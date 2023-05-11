@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:uyga_vazifa/lib/presitation/ui/resours/app_icons.dart';
 import '../../resours/App_colors.dart';
 import '../../resours/app_imagess.dart';
 
@@ -17,14 +18,14 @@ class _PleaseWaitState extends State<PleaseWait> {
       body: Column(
         children: [
           SizedBox(
-            height: 495,
+            height: 100,
           ),
           SvgPicture.asset(
-            AppImages.facebookSvg,
+            AppIcons.scan,
             width: 120,
             height: 120,
-            color: AppColors.red,
           ),
+          SizedBox(height: 10,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 100),
             child: Text(

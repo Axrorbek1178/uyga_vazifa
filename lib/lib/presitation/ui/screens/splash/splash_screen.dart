@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:uyga_vazifa/presitation/ui/resours/App_colors.dart';
-import 'package:uyga_vazifa/presitation/ui/resours/app_imagess.dart';
+import 'package:uyga_vazifa/lib/presitation/ui/resours/app_icons.dart';
 
 import '../../resours/App_colors.dart';
 import '../../resours/app_imagess.dart';
@@ -21,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           children: [
             SvgPicture.asset(
-              AppImages.loaderSvg,
+              AppImages.logoSvg,
               height: 101,
               width: 89,
             ),
@@ -120,6 +119,11 @@ class _SplashScreenState extends State<SplashScreen> {
                     height: 55,
                     child: Row(
                       children: [
+                        SvgPicture.asset(AppImages.logoSvg,
+                          width: 25,
+                          height: 27,
+                          color: Colors.blue,
+                        ),
                         Expanded(
                           child: Text(
                             "Geogle",
@@ -146,6 +150,12 @@ class _SplashScreenState extends State<SplashScreen> {
                     height: 55,
                     child: Row(
                       children: [
+                        SvgPicture.asset(
+                          AppImages.facebookSvg,
+                          color: AppColors.blue,
+                          width: 25,
+                          height: 27,
+                        ),
                         Expanded(
                           child: Text(
                             "Facebook",

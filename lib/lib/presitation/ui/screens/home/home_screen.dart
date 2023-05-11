@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uyga_vazifa/lib/presitation/ui/resours/App_colors.dart';
 import 'package:uyga_vazifa/lib/presitation/ui/resours/app_icons.dart';
+import 'package:uyga_vazifa/lib/presitation/ui/resours/app_imagess.dart';
+import 'package:uyga_vazifa/lib/presitation/ui/screens/home/category_data.dart';
+import 'package:uyga_vazifa/lib/presitation/ui/screens/product/product_screen.dart';
+import 'package:uyga_vazifa/lib/presitation/ui/widjets/app_styles.dart';
 import 'package:uyga_vazifa/lib/presitation/ui/widjets/w_brand_name.dart';
+import 'package:uyga_vazifa/lib/presitation/ui/widjets/w_category.dart';
 import 'package:uyga_vazifa/lib/presitation/ui/widjets/w_page_title.dart';
+import 'package:uyga_vazifa/lib/presitation/ui/widjets/w_product_iteam.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchController = TextEditingController();
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
   void dispose() {
@@ -24,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       backgroundColor: AppColors.white,
       appBar: _getAppBar(),
       body: Padding(
@@ -31,55 +39,184 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             _getSearchBox(),
-            SizedBox(
+            const SizedBox(
               height: 34,
             ),
             const WPageTitle(text: "Shop By Category"),
-            SizedBox(
+            const SizedBox(
               height: 22,
             ),
-            Row(
-              children: [
-                Container(
-                  width: 70,
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: AppColors.colorE5E5E5, width: 2)),
-                        width: 70,
-                        height: 70,
-                        child: Image.asset("assets/images/svg/bag.png"),
-                      ),
-                    ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              child: Row(
+                children: List.generate(
+                  categories.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.only(
+                        right: categories.length - 1 != index ? 30.0 : 0),
+                    child: WCategory(
+                      icon: categories[index].icon,
+                      text: categories[index].text,
+                    ),
                   ),
-                )
-              ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 63,
+            ),
+            const WPageTitle(text: "Newest Arrival"),
+            const SizedBox(
+              height: 22,
+            ),
+            Expanded(
+              child: GridView(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      mainAxisExtent: 260,
+                      crossAxisCount: 2),
+                  children: List.generate(
+                    8,
+                    (index) => WProductIteam(
+                      ontap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => ProductScreen()),
+                        );
+                      },
+                    ),
+                  )),
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 94,
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.shadowColor,
+              spreadRadius: 3,
+              blurRadius: 7,
+            ),
+          ],
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SvgPicture.asset(
+              AppIcons.home,
+              width: 24,
+              height: 24,
+            ),
+            SvgPicture.asset(
+              AppIcons.wishlist,
+              width: 24,
+              height: 24,
+            ),
+            SvgPicture.asset(
+              AppIcons.vektor,
+              width: 24,
+              height: 24,
+            ),
+            SvgPicture.asset(
+              AppIcons.account,
+              width: 24,
+              height: 24,
             ),
           ],
         ),
       ),
+      drawer: _getDrawer(),
     );
   }
+
+  _getDrawer() => Drawer(
+        child: ListView(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 100,
+                ),
+                SvgPicture.asset(
+                  AppImages.logoSvg,
+                  width: 89,
+                ),
+                const SizedBox(
+                  height: 28,
+                ),
+                const WBrandName(
+                  fontSize: 28,
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: const Divider(
+                      thickness: 2,
+                      color: Color(0xFFCCCCCC),
+                    )),
+                const SizedBox(
+                  height: 50,
+                ),
+              ],
+            ),
+            _getMenuIteam(text: "Rewards", icon: AppIcons.gift),
+            _getMenuIteam(text: "Help", icon: AppIcons.help),
+            _getMenuIteam(text: "Contact Us", icon: AppIcons.quotMark),
+            _getMenuIteam(text: "Privacy Policy", icon: AppIcons.privacy),
+            _getMenuIteam(text: "Logout", icon: AppIcons.logout),
+          ],
+        ),
+      );
+
+  _getMenuIteam({required String text, required String icon}) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: AppColors.red,
+            child: SvgPicture.asset(icon),
+          ),
+          title: Text(
+            text,
+            style: AppStyles.getLabelStyle(),
+          ),
+        ),
+      );
 
   _getAppBar() => AppBar(
         backgroundColor: AppColors.white,
         elevation: 0,
+        titleSpacing: 0,
+        automaticallyImplyLeading: false,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                Icons.menu,
-                color: Colors.lightBlue,
-                size: 45,
+              InkWell(
+                onTap: () {
+                  _key.currentState!.openDrawer();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(
+                    AppIcons.menu,
+                  ),
+                ),
               ),
               const WBrandName(fontSize: 28),
               const CircleAvatar(
@@ -103,9 +240,8 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.white,
-            prefixIcon: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20),
+            prefixIcon: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 20),
               child: Icon(
                 Icons.search,
                 color: AppColors.pink,
@@ -120,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
               borderSide: const BorderSide(color: Colors.transparent),
             ),
             hintText: "Search \"Smartphone\"",
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: Colors.grey,
@@ -128,11 +264,11 @@ class _HomeScreenState extends State<HomeScreen> {
             suffixIcon: Container(
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.red,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.document_scanner,
                 color: AppColors.white,
               ),

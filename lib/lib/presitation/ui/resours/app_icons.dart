@@ -9,5 +9,12 @@ abstract class AppIcons {
   static const String star = "$path/star.svg";
   static const String vektor = "$path/Vector.svg";
   static const String wishlist = "$path/Wishlist.svg";
+  static const String gift = "$path/gift.svg";
+  static const String help = "$path/help.svg";
+  static const String logout = "$path/logout.svg";
+  static const String privacy = "$path/privacy.svg";
+  static const String quotMark = "$path/quotMark.svg";
   static const String menu = "$path/menu.svg";
+  static const String heart = "$path/heart.svg";
+
 }

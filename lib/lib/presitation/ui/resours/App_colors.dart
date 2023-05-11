@@ -7,4 +7,7 @@ abstract class AppColors {
   static const Color white = Color(0xFFFFFFFF);
   static const Color shadowColor = Color(0x26848484);
   static const Color colorE5E5E5 = Color(0xFFE5E5E5);
+  static const Color blue = Color(0xFF3D6AD6);
+  static const Color rewievEnabledColor = Color(0xFFFFA305);
+  static const Color rewievDisabledColor = Color(0xFFD9D9D9);
 }

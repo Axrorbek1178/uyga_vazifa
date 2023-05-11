@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_styles.dart';
+
 class WPageTitle extends StatelessWidget {
   final String text;
 
@@ -9,11 +11,7 @@ class WPageTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-          color: Colors.black,
-          fontFamily: 'MainFont'),
+      style: AppStyles.getLabelStyle().copyWith(fontSize: 18),
     );
   }
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:uyga_vazifa/presitation/ui/resours/App_colors.dart';
-import 'package:uyga_vazifa/presitation/ui/resours/app_imagess.dart';
 
 import '../../resours/App_colors.dart';
 import '../../resours/app_imagess.dart';
