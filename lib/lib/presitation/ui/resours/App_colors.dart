@@ -10,4 +10,5 @@ abstract class AppColors {
   static const Color blue = Color(0xFF3D6AD6);
   static const Color rewievEnabledColor = Color(0xFFFFA305);
   static const Color rewievDisabledColor = Color(0xFFD9D9D9);
+  static const Color lightgrey = Color(0xFFAAAAAA);
 }
