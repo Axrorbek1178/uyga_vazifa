@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uyga_vazifa/lib/presitation/ui/resours/App_colors.dart';
@@ -84,9 +85,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: List.generate(
                     8,
                     (index) => WProductIteam(
+                      index: index,
                       ontap: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => ProductScreen()),
+                          MaterialPageRoute(builder: (_) => ProductScreen(index: index,)),
                         );
                       },
                     ),
@@ -95,48 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 94,
-        decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.shadowColor,
-              spreadRadius: 3,
-              blurRadius: 7,
-            ),
-          ],
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SvgPicture.asset(
-              AppIcons.home,
-              width: 24,
-              height: 24,
-            ),
-            SvgPicture.asset(
-              AppIcons.wishlist,
-              width: 24,
-              height: 24,
-            ),
-            SvgPicture.asset(
-              AppIcons.vektor,
-              width: 24,
-              height: 24,
-            ),
-            SvgPicture.asset(
-              AppIcons.account,
-              width: 24,
-              height: 24,
-            ),
-          ],
-        ),
-      ),
+
       drawer: _getDrawer(),
     );
   }

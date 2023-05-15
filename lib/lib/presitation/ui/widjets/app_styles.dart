@@ -12,4 +12,10 @@ abstract class AppStyles {
       fontWeight: FontWeight.w800,
       color: Color(0xFFF13005),
       fontFamily: 'MainFont');
+
+  static TextStyle getContentStyle() => const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: Color(0xFFAAAAAA),
+      fontFamily: 'MainFont');
 }

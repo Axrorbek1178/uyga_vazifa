@@ -11,4 +11,13 @@ abstract class AppColors {
   static const Color rewievEnabledColor = Color(0xFFFFA305);
   static const Color rewievDisabledColor = Color(0xFFD9D9D9);
   static const Color lightgrey = Color(0xFFAAAAAA);
+  static const Color success = Color(0xFF12991F);
+
+  // Prakrika
+  static const Color Color1 = Color(0xFF396036);
+  static const Color Color2 = Color(0xFFCDBD69);
+  static const Color Color3 = Color(0xFF3B250F);
+  static const Color Color4 = Color(0xFF69ABCE);
+  static const Color Color5 = Color(0xFFC0C0C0);
+  static const Color inActiveTabColor = Color(0x33070707);
 }

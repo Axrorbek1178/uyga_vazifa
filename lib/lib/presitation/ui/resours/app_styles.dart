@@ -21,4 +21,19 @@ abstract class Styles {
       color: AppColors.lightgrey,
       height: 1.4,
       fontWeight: FontWeight.w500);
+  static TextStyle getPriceStyle() => const TextStyle(
+      fontSize: 16,
+      color: AppColors.red,
+      fontFamily: 'MainFont',
+      fontWeight: FontWeight.w800);
+  static TextStyle getLabelStyle() => const TextStyle(
+      fontSize: 16,
+      color: AppColors.red,
+      fontFamily: 'MainFont',
+      fontWeight: FontWeight.w600);
+  static TextStyle getContentStyle() => const TextStyle(
+      fontSize: 16,
+      color: Color(0xFFAAAAAA),
+      fontFamily: 'MainFont',
+      fontWeight: FontWeight.w500);
 }
